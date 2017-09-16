@@ -1,0 +1,14 @@
+Release 1 – Release "Comète"
+
+Objectif de la release : Déployer dans un environnement bac à sable, accessible aux opérationnels métier, un système réalisant le scénario "normal CB" du CU "Passer commande en ligne". Le code réalisé devra être utilisé comme base du code de la release 2 (donc dans la technologie cible).
+
+Durée estimée de la release : 12 semaines – du … au …
+
+Cette release devra permettre de lever un certain nombre de risques : 
+•	Risques métier : aider les opérationnels métier à mieux cerner les besoins métier 
+•	Risques techniques : permettre la montée en compétence des développeurs sur les technologies BDD et Web
+•	Risques humains : recréer la confiance entre opérationnels métier et DSI. Monter en compétence sur la gestion de projet agile.
+Notons bien que le code produit devra être réutilisé comme base de la release 2: ce n'est pas un code jetable de prototype. 
+La technologie cible pressentie est Java EE.
+
+Un "sprint 0" de la release devra définir plus précisément le plan de de la release (cf. chapitre ci-dessous), en particulier son découpage en sprints.
