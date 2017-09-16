@@ -1,3 +1,26 @@
+La société de vente de vêtements « French chic » commercialise ses produits dans son réseau de magasins et par correspondance. Elle souhaite aujourd’hui développer un site Web de e-commerce et vous êtes responsable de ce projet.
+Outre la vente sur Internet, la nouvelle application devra permettre aux employés des ventes et au responsable du stock de gérer les commandes, les livraisons et aider à la gestion du stock (approvisionnement chez fournisseurs).
+
+Les commandes pourront être payées par CB (paiement sécurisé immédiat) ou par chèque. Lorsque l'employé des ventes reçoit le paiement (cas du paiement par chèque), il confirme la commande via le SI. Un e-mail de confirmation est envoyé au client. La commande peut alors être livrée par le responsable du stock (utilisation du SI). Un e-mail est alors envoyé au client.
+Le déstockage se fait au moment du passage de la commande.
+
+L'application permettra au responsable du stock de vérifier le stock et de demander l'édition de commandes fournisseur. Un traitement batch journalier émettra les commandes fournisseur: 
+•	commandes automatiques pour les fournisseurs possédant un système de commandes automatisé
+•	bons de commande édités sur l'imprimante du responsable du stock pour les autres.
+
+L’application communiquera avec l’application de comptabilité existante pour la gestion comptable. On considère une vente effective quand le paiement est confirmé.
+
+Le service des ventes utilisera l’application via une IHM graphique répondant au standard d’ergonomie défini dans la société. Le responsable des stocks accèdera à l’application via une interface type Web (accessible sur tous les postes de l’entreprise) et une IHM graphique standard (sur son poste dédié).
+
+Des entretiens avec le personnel de l’entreprise a permis de recenser les informations suivantes :
+
+Le catalogue des produits est organisé en catégories/sous-catégories. Les produits appartiennent aux catégories de dernier niveau.
+Chaque produit est identifié par une référence. Un produit a un prix défini pour chaque période tarifaire.
+Une commande concerne un certain nombre de produits et concerne un client donné.
+Chaque client ayant déjà passé une commande possède un compte client et est caractérisé par un numéro de client, un nom, un prénom, une adresse de facturation et de livraison. Des chèques cadeau sont remis aux clients, qui peuvent régler une partie d’une commande en donnant le numéro du chèque cadeau.
+ 
+
+
 Release 1 – Release "Comète"
 
 Objectif de la release : Déployer dans un environnement bac à sable, accessible aux opérationnels métier, un système réalisant le scénario "normal CB" du CU "Passer commande en ligne". Le code réalisé devra être utilisé comme base du code de la release 2 (donc dans la technologie cible).
