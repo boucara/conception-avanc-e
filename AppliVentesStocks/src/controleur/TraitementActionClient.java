@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -19,11 +21,14 @@ private PageAcceuil fenetre;
 	
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String pseudoUser = fenetre.getTextField().getText();
 		JFrame fenetreLogin = new JFrame("Application Ventes et Stocks");
-		JLabel label = new JLabel("", JLabel.BOTTOM);
+		JLabel label = new JLabel("", JLabel.CENTER);
+		Font font = new Font("Arial", Font.BOLD, 16);
+		label.setFont(font);
+		label.setForeground(Color.BLUE);
 		
 		label.setText("Bienvenue sur notre site de  Ventes " + pseudoUser);
 		fenetreLogin.add(label);
