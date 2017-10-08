@@ -19,32 +19,33 @@ import javax.swing.JTextField;
 import controleur.EnumTypeEcran;
 import controleur.Session;
 
-public class VueJetable extends JFrame  {
-	
-	public  VueJetable() {
+public class VueJetable{
+	JLabel headerLabel;
+
+	JTextField txtEmail;
+
+	JPanel mainPanel;
+	JLabel labelEmail ;
+	JPasswordField password ;
+	JLabel labelMdp;
+	JPanel p1;
+	JPanel p2;
+	public void affichageEcranAcceuil() {
+		JFrame frameAcceuil=new JFrame("Application Ventes et Stoks");
 		
-		JLabel headerLabel;
-
-		JTextField txtEmail;
-
-		JPanel mainPanel;
-
-		this.setTitle("Application Ventes et Stoks");
 
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setBackground(Color.WHITE);
-
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(70, 100, 70, 100));
 
-		headerLabel = new JLabel("French Chic", JLabel.CENTER);
-
+		JLabel headerLabel = new JLabel("French Chic", JLabel.CENTER);
 		Font font = new Font("Arial", Font.PLAIN, 43);
 		headerLabel.setFont(font);
 		headerLabel.setForeground(new Color(206, 0, 206));
-		headerLabel.setAlignmentX(CENTER_ALIGNMENT);
+		headerLabel.setAlignmentX(frameAcceuil.CENTER_ALIGNMENT);
 
-		JPasswordField password = new JPasswordField();
+		password = new JPasswordField();
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Arial", Font.PLAIN, 20));
 		txtEmail.setBorder(BorderFactory.createLineBorder(new Color(165, 189, 206)));
@@ -57,15 +58,12 @@ public class VueJetable extends JFrame  {
 		Box box = Box.createVerticalBox();
 		box.add(Box.createVerticalStrut(60));
 		box.add(headerLabel);
-
 		box.add(Box.createVerticalStrut(80));
 
-		JLabel labelEmail = new JLabel("Pseudo");
-
-		JLabel labelMdp = new JLabel("Mot de passe");
-
-		JPanel p1 = new JPanel();
-
+		labelEmail = new JLabel("Pseudo");
+		labelMdp = new JLabel("Mot de passe");
+		
+		p1 = new JPanel();
 		p1.setLayout(new FlowLayout(FlowLayout.LEADING, 66, 0));
 		p1.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
 		p1.add(labelEmail);
@@ -74,8 +72,8 @@ public class VueJetable extends JFrame  {
 		box.add(p1);
 
 		box.add(Box.createVerticalStrut(10));
-		password.setAlignmentX(LEFT_ALIGNMENT);
-		JPanel p2 = new JPanel();
+		password.setAlignmentX(frameAcceuil.LEFT_ALIGNMENT);
+		p2 = new JPanel();
 		p2.setLayout(new FlowLayout(FlowLayout.LEADING, 50, 0));
 		p2.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
 		p2.add(labelMdp);
@@ -85,25 +83,43 @@ public class VueJetable extends JFrame  {
 		box.add(p2);
 
 		box.add(Box.createVerticalStrut(50));
-
 		box.setBackground(Color.white);
 		box.setBorder(BorderFactory.createLineBorder(new Color(165, 189, 206)));
 
 		mainPanel.add(box, BorderLayout.CENTER);
 
-		this.add(mainPanel);
-		this.setSize(800, 600);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+		frameAcceuil.add(mainPanel);
+		frameAcceuil.setSize(800, 600);
+		frameAcceuil.setLocationRelativeTo(null);
+		frameAcceuil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameAcceuil.setVisible(true);
+	}
+	
+	public void affichageEcranPerso(String nom , String prenom) {
+		
+		 	JFrame fenetreLogin = new JFrame("Application Ventes et Stocks");
+		 	JLabel label = new JLabel("", JLabel.BOTTOM);
+		 	
+		 	label.setText("Bienvenue sur notre site de  Ventes " + prenom +nom);
+			fenetreLogin.add(label);
+		 	fenetreLogin.setLocationRelativeTo(null);
+		 	fenetreLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 	fenetreLogin.setSize(500, 500);
+		 	fenetreLogin.setVisible(true);
+		
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		Session controleur  = new Session();
+		VueJetable vue=new VueJetable();
 		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_ACCUEIL) {
-			new VueJetable();
+			vue.affichageEcranAcceuil();
+		}
+		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_PERSO) {
+			
+			vue.affichageEcranPerso(controleur.clientCourrant.getNom(), controleur.clientCourrant.getPrenom());
 		}
 		
 	}

@@ -1,23 +1,36 @@
 package controleur;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
+import metier.Client;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+public class Session {
 
-public class Session extends JFrame {
+	List<Client> clients = new ArrayList<Client>();
+	public Client clientCourrant;
+	public Session() {
+		Client unClient=new Client("dupontmari","000");
+		unClient.setPrenom("Marie");
+		unClient.setNom("Dupond");
+		clients.add(unClient);
+		
+	}
+
+
 	
-
 	public EnumTypeEcran traitementConnexion() {
-		return EnumTypeEcran.ECRAN_ACCUEIL ;
+		return EnumTypeEcran.ECRAN_ACCUEIL;
+	}
+
+	public EnumTypeEcran traiterIdentification(String pseudo, String mdp) {
+		clientCourrant= new Client(pseudo,mdp);
+		if(!this.clients.isEmpty()&& this.clients.contains(clientCourrant)) {
+			return EnumTypeEcran.ECRAN_PERSO;
+			
+		}
+		else
+			return EnumTypeEcran.ECRAN_ACCUEIL;
+		
 	}
 }
