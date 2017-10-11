@@ -10,6 +10,7 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ import javax.swing.JTextField;
 import controleur.EnumTypeEcran;
 import controleur.Session;
 
-public class VueJetable{
+public class VueJetable {
 	JLabel headerLabel;
 
 	JTextField txtEmail;
@@ -30,8 +31,10 @@ public class VueJetable{
 	JLabel labelMdp;
 	JPanel p1;
 	JPanel p2;
+	JButton bouton;
+	JFrame frameAcceuil;
 	public void affichageEcranAcceuil() {
-		JFrame frameAcceuil=new JFrame("Application Ventes et Stoks");
+		frameAcceuil=new JFrame("Application Ventes et Stoks");
 		
 
 		mainPanel = new JPanel();
@@ -87,19 +90,22 @@ public class VueJetable{
 		box.setBorder(BorderFactory.createLineBorder(new Color(165, 189, 206)));
 
 		mainPanel.add(box, BorderLayout.CENTER);
+		bouton = new JButton("S'identifier");
+		p2.add(bouton);
 
 		frameAcceuil.add(mainPanel);
 		frameAcceuil.setSize(800, 600);
 		frameAcceuil.setLocationRelativeTo(null);
 		frameAcceuil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameAcceuil.setVisible(true);
+		
 	}
 	
 	public void affichageEcranPerso(String nom , String prenom) {
-		
+			
 		 	JFrame fenetreLogin = new JFrame("Application Ventes et Stocks");
 		 	JLabel label = new JLabel("", JLabel.BOTTOM);
-		 	
+		 
 		 	label.setText("Bienvenue sur notre site de  Ventes " + prenom +nom);
 			fenetreLogin.add(label);
 		 	fenetreLogin.setLocationRelativeTo(null);
