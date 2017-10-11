@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,23 +21,27 @@ import javax.swing.JTextField;
 import controleur.EnumTypeEcran;
 import controleur.Session;
 
-public class VueJetable {
-	JLabel headerLabel;
-
-	JTextField txtEmail;
-
-	JPanel mainPanel;
-	JLabel labelEmail ;
-	JPasswordField password ;
-	JLabel labelMdp;
-	JPanel p1;
-	JPanel p2;
-	JButton bouton;
-	JFrame frameAcceuil;
-	public void affichageEcranAcceuil() {
-		frameAcceuil=new JFrame("Application Ventes et Stoks");
+public class VueJetable extends JFrame {
+	
+	
+	public VueJetable() {
+		super("Application Ventes et Stoks");
+		this.setVisible(false);
+	}
+	
+	public void affichageEcranAccueil() {
 		
-
+		//Initialisation des objets utilisé pour la création de la page
+		JTextField txtEmail;
+		JPanel mainPanel;
+		JLabel labelEmail ;
+		JPasswordField password ;
+		JLabel labelMdp;
+		JPanel p1;
+		JPanel p2;
+		JButton bouton;
+		JFrame frameAcceuil;
+		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setBackground(Color.WHITE);
@@ -46,7 +51,7 @@ public class VueJetable {
 		Font font = new Font("Arial", Font.PLAIN, 43);
 		headerLabel.setFont(font);
 		headerLabel.setForeground(new Color(206, 0, 206));
-		headerLabel.setAlignmentX(frameAcceuil.CENTER_ALIGNMENT);
+		headerLabel.setAlignmentX(this.CENTER_ALIGNMENT);
 
 		password = new JPasswordField();
 		txtEmail = new JTextField();
@@ -75,7 +80,7 @@ public class VueJetable {
 		box.add(p1);
 
 		box.add(Box.createVerticalStrut(10));
-		password.setAlignmentX(frameAcceuil.LEFT_ALIGNMENT);
+		password.setAlignmentX(this.LEFT_ALIGNMENT);
 		p2 = new JPanel();
 		p2.setLayout(new FlowLayout(FlowLayout.LEADING, 50, 0));
 		p2.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 100));
@@ -93,35 +98,55 @@ public class VueJetable {
 		bouton = new JButton("S'identifier");
 		p2.add(bouton);
 
-		frameAcceuil.add(mainPanel);
-		frameAcceuil.setSize(800, 600);
-		frameAcceuil.setLocationRelativeTo(null);
-		frameAcceuil.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frameAcceuil.setVisible(true);
+		this.add(mainPanel);
+		this.setSize(800, 600);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 		
 	}
 	
 	public void affichageEcranPerso(String nom , String prenom) {
-			
-		 	JFrame fenetreLogin = new JFrame("Application Ventes et Stocks");
-		 	JLabel label = new JLabel("", JLabel.BOTTOM);
-		 
-		 	label.setText("Bienvenue sur notre site de  Ventes " + prenom +nom);
-			fenetreLogin.add(label);
-		 	fenetreLogin.setLocationRelativeTo(null);
-		 	fenetreLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 	fenetreLogin.setSize(500, 500);
-		 	fenetreLogin.setVisible(true);
+
+		JLabel label = new JLabel("", JLabel.BOTTOM);
+
+		label.setText("Bienvenue sur notre site de  Ventes " + prenom +nom);
+		this.add(label);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(500, 500);
+		this.setVisible(true);
+
+	}
+	
+	public void affichageEcranPanier() {
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		
+		this.add(panel);
+		
+		JLabel headerLabel = new JLabel("Votre Panier", JLabel.LEFT);
+		Font font = new Font("Arial", Font.PLAIN, 43);
+		headerLabel.setFont(font);
+		headerLabel.setForeground(new Color(206, 0, 206));
+		headerLabel.setAlignmentX(this.LEFT_ALIGNMENT);
+		
+		panel.add(headerLabel);
+		
+		this.setVisible(true);
 		
 	}
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		Session controleur  = new Session();
 		VueJetable vue=new VueJetable();
+		vue.affichageEcranPanier();
 		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_ACCUEIL) {
-			vue.affichageEcranAcceuil();
+			vue.affichageEcranAccueil();;
 		}
 		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_PERSO) {
 			
