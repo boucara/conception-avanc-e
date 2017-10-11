@@ -6,10 +6,9 @@ public class Produit {
 	private double prixHT;
 	private int quantite;
 	
-	public Produit(String label, double prixHT, int quantite) {
+	public Produit(String label, double prixHT) {
 		this.label = label;
 		this.prixHT = prixHT;
-		this.quantite = quantite;
 	}
 
 	public String getLabel() {
@@ -26,14 +25,6 @@ public class Produit {
 
 	public void setPrixHT(double prixHT) {
 		this.prixHT = prixHT;
-	}
-
-	public int getQuantite() {
-		return quantite;
-	}
-
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
 	}
 	
 }
