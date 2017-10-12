@@ -7,8 +7,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -21,8 +24,10 @@ import javax.swing.JTextField;
 import controleur.EnumTypeEcran;
 import controleur.Session;
 
-public class VueJetable extends JFrame {
-	
+public class VueJetable extends JFrame{
+	JTextField txtEmail;
+	JPasswordField password ;
+	Session controleur  = new Session();
 	
 	public VueJetable() {
 		super("Application Ventes et Stoks");
@@ -32,10 +37,10 @@ public class VueJetable extends JFrame {
 	public void affichageEcranAccueil() {
 		
 		//Initialisation des objets utilisé pour la création de la page
-		JTextField txtEmail;
+		
 		JPanel mainPanel;
 		JLabel labelEmail ;
-		JPasswordField password ;
+		
 		JLabel labelMdp;
 		JPanel p1;
 		JPanel p2;
@@ -96,6 +101,7 @@ public class VueJetable extends JFrame {
 
 		mainPanel.add(box, BorderLayout.CENTER);
 		bouton = new JButton("S'identifier");
+		bouton.addActionListener(new TraitementBouton());
 		p2.add(bouton);
 
 		this.add(mainPanel);
@@ -104,19 +110,6 @@ public class VueJetable extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		
-	}
-	
-	public void affichageEcranPerso(String nom , String prenom) {
-
-		JLabel label = new JLabel("", JLabel.BOTTOM);
-
-		label.setText("Bienvenue sur notre site de  Ventes " + prenom +nom);
-		this.add(label);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500, 500);
-		this.setVisible(true);
-
 	}
 	
 	public void affichageEcranPanier() {
@@ -137,22 +130,27 @@ public class VueJetable extends JFrame {
 		this.setVisible(true);
 		
 	}
-	
+	public JTextField getTextField(){
+		 	return txtEmail;
+		 	}
+	public JTextField getPassWordField(){
+	 	return password;
+	 	}
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Session controleur  = new Session();
+		
 		VueJetable vue=new VueJetable();
-		vue.affichageEcranPanier();
-		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_ACCUEIL) {
+		//vue.affichageEcranPanier();
+		if(vue.controleur.traitementConnexion()==EnumTypeEcran.ECRAN_ACCUEIL) {
 			vue.affichageEcranAccueil();;
 		}
-		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_PERSO) {
-			
-			vue.affichageEcranPerso(controleur.clientCourrant.getNom(), controleur.clientCourrant.getPrenom());
-		}
+		
 		
 	}
+
+	
 
 }
