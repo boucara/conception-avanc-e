@@ -1,13 +1,19 @@
 package metier;
 
+import java.util.HashMap;
+
 public class Client {
 	private String pseudo;
 	private String motDePasse ;
 	private String nom;
 	private String prenom;
+	
+	HashMap<Produit, Integer> panier;
+	
 	public  Client(String pseudo , String motDePasse) {
-		this.setPseudo(pseudo) ;
-		this.setMotDePasse(motDePasse) ;
+		this.setPseudo(pseudo);
+		this.setMotDePasse(motDePasse);
+		panier= new HashMap<Produit, Integer>();
 		
 	}
 	public String getMotDePasse() {
@@ -33,6 +39,10 @@ public class Client {
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public void ajouterAuPanier(Produit produitDuJour, Integer quantite) {
+		panier.put(produitDuJour, quantite);
 	}
 
 }
