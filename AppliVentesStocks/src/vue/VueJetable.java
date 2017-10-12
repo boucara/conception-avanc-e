@@ -8,10 +8,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -27,8 +30,11 @@ import controleur.EnumTypeEcran;
 import controleur.Session;
 import metier.Produit;
 
-public class VueJetable extends JFrame {
+public class VueJetable extends JFrame{
 	
+	JTextField txtEmail;
+	JPasswordField password ;
+	Session controleur  = new Session();
 	
 	public VueJetable() {
 		super("Application Ventes et Stoks");
@@ -38,10 +44,10 @@ public class VueJetable extends JFrame {
 	public void affichageEcranAccueil() {
 		
 		//Initialisation des objets utilisé pour la création de la page
-		JTextField txtEmail;
+		
 		JPanel mainPanel;
 		JLabel labelEmail ;
-		JPasswordField password ;
+		
 		JLabel labelMdp;
 		JPanel p1;
 		JPanel p2;
@@ -102,6 +108,7 @@ public class VueJetable extends JFrame {
 
 		mainPanel.add(box, BorderLayout.CENTER);
 		bouton = new JButton("S'identifier");
+		bouton.addActionListener(new TraitementBouton());
 		p2.add(bouton);
 
 		this.add(mainPanel);
@@ -200,23 +207,28 @@ public class VueJetable extends JFrame {
 		
 	}
 	
+	public JTextField getTextField(){
+		 	return txtEmail;
+	}
+	
+	public JTextField getPassWordField(){
+	 	return password;
+	 	}
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Session controleur  = new Session();
-		VueJetable vue=new VueJetable();
-		HashMap<Produit, Integer>panier = new HashMap<Produit, Integer>();
-		//vue.affichageEcranPanier(panier);
 		
-		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_ACCUEIL) {
+		VueJetable vue=new VueJetable();
+		
+		if(vue.controleur.traitementConnexion()==EnumTypeEcran.ECRAN_ACCUEIL) {
 			vue.affichageEcranAccueil();
 		}
-		if(controleur.traitementConnexion()==EnumTypeEcran.ECRAN_PERSO) {
-			
-			vue.affichageEcranPerso(controleur.clientCourrant.getNom(), controleur.clientCourrant.getPrenom());
-		}
+		
 		
 	}
+
+	
 
 }
